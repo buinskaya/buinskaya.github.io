@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/color.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" media="print" href="../css/print.css">
+    <script src="https://kit.fontawesome.com/470421bb65.js" crossorigin="anonymous"></script>
+    <script src="../js/script.js"></script>
+    <title>Alena Buinskaya&mdash;CV</title>
+  </head>
+  <body class="cv" onload="currentPage('cv')">
+      <header>
+      <nav id="menu">
+    <button aria-label="Main" type="button" onclick="openMenu()"><i class="fa-solid fa-bars fa-xl" title="Website navigation"></i></button>
+    <ul>
+        <li><a href="index.html" id="index">Home</a></li>
+        <li><a href="cv.html" id="cv">CV</a></li>
+        <li><a href="teach.html" id="teach">Teaching</a></li>
+        <li><a href="research.html" id="research">Research</a></li>
+    </ul>        
+</nav>
+      </header>
+      <main>
+          <h1>Alena Buinskaya</h1>
+          <section class="contactWeb">
+              <i class="fa-solid fa-envelope cv" title="Send an email"></i> <a href="mailto:buinskaya@caltech.edu">buinskaya@caltech.edu</a>
+          </section>
+	<section  class="cv accordion big rightCol" onclick="accordion(this)">
+        <h2 class="cv">Education</h2>
+        <ul class="cv panel">
+		<li><img class="logo" src="../img/caltech_orange.png" alt="Caltech logo">
+            <h3 class="cv school">California Institute of Technology</h3>
+            <div class="cv"><i class="fa-solid fa-calendar-days cv" title="period"></i> Sep 2019 &ndash; Aug 2024 (expected)</div>
+            <div class="cv"><i class="fa-solid fa-location-dot cv" title="location"></i> Pasadena, California, USA</div>
+            <div class="cv"><i class="fa-solid fa-graduation-cap cv" title="degree"></i> Doctor of Philosophy (Social Sciences)</div>
+            <hr>
+            </li>
+        <li><img class="logo" src="../img/snu_blue.png" alt="SNU logo" width="70px">
+            <h3 class="cv school">Seoul National University</h3>
+            <div class="cv"><i class="fa-solid fa-calendar-days cv" title="period"></i> Sep 2017 &ndash; Jul 2019</div>
+            <div class="cv"><i class="fa-solid fa-location-dot cv" title="location"></i> Seoul, Rep. of Korea</div>
+            <div class="cv"><i class="fa-solid fa-graduation-cap cv" title="degree"></i> Master of Arts (Economics)</div>
+            <hr></li>
+        <li><img class="logo" src="../img/khu.png" alt="Caltech logo" width="70px">
+            <h3 class="cv school">Kyung Hee University</h3>
+            <div class="cv"><i class="fa-solid fa-calendar-days cv" title="period"></i> Mar 2013 &ndash; Feb 2017</div>
+            <div class="cv"><i class="fa-solid fa-location-dot cv" title="location"></i> Seoul, Rep. of Korea</div>
+            <div class="cv"><i class="fa-solid fa-graduation-cap cv" title="degree"></i> Bachelor of Sciences (Applied Mathematics)<br>
+            <i class="fa-solid fa-graduation-cap cv" title="degree"></i> Bachelor of Economics</div>
+                </li>
+        </ul>
+        <i class="arrow down"></i>
+	</section>
+          <section class="cv leftCol">
+        <h2>Skills</h2>
+          <section class="subsection accordion small" onclick="accordion(this)">
+          <h3 class="cv"><i class="fa-solid fa-laptop-code cv"></i> Technical skills</h3>
+          <div class="panel">
+          <h4>Statistical analysis and data vizualization</h4>
+              <ul class="skills">
+                  <li class="first">R</li>
+                  <li>Python</li>
+                  <li>Excel</li>
+              </ul>
+              <hr>
+          <h4>Experiment and survey design</h4>
+              <ul class="skills">
+                  <li class="first">OTree</li>
+                  <li>Qualtrics</li>
+              </ul>
+              <hr>
+          <h4>Markup and web design</h4>
+              <ul class="skills">
+                  <li class="first">LaTeX</li>
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+          </ul>
+          </div>
+          </section>
+          <section class="subsection accordion small" onclick="accordion(this)">
+            <h3 class="cv"><i class="fa-solid fa-language"></i> Languages</h3>
+            <ul class="cv panel">
+              <li>English | Advanced (C2)</li>
+              <li>Korean | Advanced (C2)</li>
+              <li>Russian | Native</li>
+              <li>Belarusian | Native</li>
+            </ul> 
+        </section>
+    </section>
+	<section class="cv rightCol">
+        <h2>Experience</h2>
+        <section class="subsection accordion small" onclick="accordion(this)">
+        <h3 class="cv"><i class="fa-solid fa-briefcase cv"></i> Work</h3>
+            <ul class="panel cv">
+            <li>Study-abroad program coordinator, interpreter / UTOS Network Inc.<br>
+                <i class="fa-solid fa-calendar-days cv"  title="period"></i> Mar 2014 &ndash; Aug 2017
+            </li>
+        </ul>
+        </section>
+        <section class="subsection accordion small" onresize="myFunction()" onclick="accordion(this)">
+        <h3 class="cv"><i class="fa-solid fa-pen cv"></i> Teaching</h3>
+		<ul class="cv panel">    
+            <li>Principles of Economics with Calculus <i class="fa-solid fa-calendar-days cv"  title="term"></i> Winter 2020/21</li>
+            <li>Introduction to Political Science <i class="fa-solid fa-calendar-days cv"  title="terms"></i> Fall 2021/22, Fall 2022/23</li>
+            <li>Game Theory <i class="fa-solid fa-calendar-days cv"  title="terms"></i> Spring 2020/21, Spring 2021/22, Spring 2022/23</li>
+            <li>Game Theory and Applications <i class="fa-solid fa-calendar-days cv"  title="terms"></i> Fall 2017, Fall 2018</li>
+            <li>Microeconomic Theory <i class="fa-solid fa-calendar-days cv"  title="term"></i> Spring 2018</li>
+            <li>Fintech: Mathematical models of cryptocurrencies, crowdfunding and roboadvisors <i class="fa-solid fa-calendar-days cv"  title="term"></i> Summer 2021</li>
+        </ul>
+        <p>See the <a href="teach.html">teaching</a> section for details</p>
+      </section>
+        <section class="subsection accordion small" onclick="accordion(this)">
+        <h3 class="cv"><i class="fa-solid fa-magnifying-glass cv"></i> Research</h3>
+        <ul class="cv panel">
+            <li>Integrating community information in research
+design (with Mikhail Galashin)</li>
+            <li>Position uncertainty and assignment: Binary public good experiment</li>
+        </ul>
+        <p>See the <a href="teach.html">research</a> section for details</p>
+       </section>
+	</section>
+    <section class="accordion big cv leftCol" onclick="accordion(this)">
+        <h2>Select awards and honors</h2>
+		<ul class="cv panel">
+            <li><h3>BK21 Plus Research Scholarship</h3>
+                <div><i class="fa-solid fa-building-columns cv"></i> Seoul National University</div>
+                <div><i class="fa-solid fa-calendar-days cv"  title="period"></i> Sep 2017 &ndash; Feb 2019</div>
+                <div><i class="fa-solid fa-money-bill cv"></i> amount</div><hr>
+            </li>
+            <li> <h3>Global Hope Scholarship</h3>
+                <div><i class="fa-solid fa-building-columns cv"></i> Samsung Dream Scholarship Foundation</div>
+                <div><i class="fa-solid fa-calendar-days cv"  title="period"></i> Sep 2017 &ndash; Aug 2019</div>
+                <div><i class="fa-solid fa-money-bill cv"></i> amount</div><hr>
+            </li>
+            <li> <h3>SNU Global Scholarship</h3>
+                <div><i class="fa-solid fa-building-columns cv"></i> Seoul National University</div>
+                <div><i class="fa-solid fa-calendar-days cv"  title="period"></i> Sep 2017 &ndash; Aug 2019</div>
+                <div><i class="fa-solid fa-money-bill cv"></i> amount</div>
+                    </li>
+        </ul>
+        <i class="arrow down"></i>
+	</section>
+    </main>
+      
+    <footer>
+    <div>&copy; 2023 Alena Buinskaya. All rights reserved.</div>
+    <ul>
+      <li><a href="https://github.com/buinskaya/" target="_blank"><i class="fa-brands fa-github" title="Visit Alena's GitHub page"></i></a></li>
+      <li><a href="https://www.linkedin.com/in/alena-buinskaya-7b0106270/" target="_blank"><i class="fa-brands fa-linkedin" title="Visit Alena's LinkedIn page"></i></a></li>
+      <li><a href="mailto:buinskaya@caltech.edu"><i class="fa-solid fa-envelope" title="Send an email"></i></a></li>
+    </ul> 
+    </footer>      
+<script>
+    window.addEventListener("resize", cv_layout)
+</script>
+  </body>
+</html>

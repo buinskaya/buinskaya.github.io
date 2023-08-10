@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/color.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <script src="https://kit.fontawesome.com/470421bb65.js" crossorigin="anonymous"></script>
+    <script src="../js/script.js"></script>
+    <title>Alena Buinskaya&mdash;Homepage</title>
+  </head>
+  <body class="index" onload="currentPage('index')">
+      <header>
+      <nav id="menu">
+    <button aria-label="Main" type="button" onclick="openMenu()"><i class="fa-solid fa-bars fa-xl" title="Website navigation"></i></button>
+    <ul>
+        <li><a href="index.html" id="index">Home</a></li>
+        <li><a href="cv.html" id="cv">CV</a></li>
+        <li><a href="teach.html" id="teach">Teaching</a></li>
+        <li><a href="research.html" id="research">Research</a></li>
+    </ul>        
+</nav>
+      </header>
+      
+      <main>
+                  <h1>Alena Buinskaya</h1>
+        <p id="oneliner">Ph.D. Candidate in Social Sciences at Caltech ('24)</p>
+          <div class="headshot">
+      <img src="../img/headshot.jpg" alt="Headshot of Alena Buinskaya, a white woman with blue eyes and shoulder-length straight brown hair, wearing a cinnamon-colored blouse, standing in front of greenery and smiling into the camera.">
+        
+    </div>   
+	<section class="threeCols">
+        <h2>Summary</h2>
+		<p>This section briefly introduces me, describes my objectives, and summarises my qualifications.</p>
+		<p> This paragraph is just filler text. It doesn't mean anything. </p>
+	</section>
+    <section class="threeCols">
+        <h2>About me</h2>
+		<p>This section talks about who I am and what I value outside of my professional life. It talks about my personal history a little bit. It's a good place to link my diversity statement.</p>
+        <h3>How to pronounce my name</h3>
+        <audio controls>
+          <source src="../files/name.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+        <p>My first name, <em><span lang="be">Алена</span></em> (<i>Alena</i>, pronounced "Ah-LEH-nah"), is a common Belarusian variant of the feminine Ancient Greek name <a href="https://en.wikipedia.org/wiki/Helen_of_Troy"><i><span lang="grc">Ἑλένη</span> (Helenē)</i></a>. It came to Eastern Europe with the spread of Christianity thanks to <a href="https://en.wikipedia.org/wiki/Helena,_mother_of_Constantine_I">St. Helena of Constantinople</a>. </p>
+        <p>My last name, <em> <span lang="be">Буінская</span></em> (<i>Buinskaya</i>, pronounced "Boo-INN-sky-ya"), is the feminine version of the family name <em><span lang="pl">Buinski</span></em>, originating from western Belarus and northern Poland.</p>
+          </section>        
+    </main>
+      
+    <footer>
+    <div>&copy; 2023 Alena Buinskaya. All rights reserved.</div>
+    <ul>
+      <li><a href="https://github.com/buinskaya/" target="_blank"><i class="fa-brands fa-github" title="Visit Alena's GitHub page"></i></a></li>
+      <li><a href="https://www.linkedin.com/in/alena-buinskaya-7b0106270/" target="_blank"><i class="fa-brands fa-linkedin" title="Visit Alena's LinkedIn page"></i></a></li>
+      <li><a href="mailto:buinskaya@caltech.edu"><i class="fa-solid fa-envelope" title="Send an email"></i></a></li>
+    </ul> 
+    </footer>      
+      <script>
+includeHTML();
+currentPage('index');
+</script>
+  </body>
+</html>
