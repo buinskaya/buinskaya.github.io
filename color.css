@@ -1,0 +1,132 @@
+/* ----Light color scheme-----*/
+@media screen {
+a {
+    color: #000;
+}
+nav ul {
+    background-color: #dee1dd;
+}
+nav button {
+    color: #000;
+    background-color: #dee1dd;
+}
+
+nav.open button, nav a.current {
+    color: #fff;
+    background-color: #61764b;
+}
+nav a:hover, nav button:hover {
+    background-color: #a1aa9b;
+    color: #fff;
+}
+nav a:active {
+    background-color: #61764b;
+}
+
+/* CV sections*/
+body.cv {
+    background-color: #dee1dd55;
+}
+
+section.cv {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+}
+
+/* CV accordions */
+@media screen and (max-width: 600px) {
+    .accordion:hover, .subsection:hover, arrow:hover {
+        background-color: #a1aa9b;
+        color: #fff;
+    }
+    .accordion:active, .subsection:active, .arrow:active {
+        background-color: #61764b;
+    }
+
+    .arrow {
+        border-color: #000;
+    }
+    .arrow:hover {
+        border-color: #fff;
+    }
+}
+
+/* CV accordions */
+@media screen and (max-width: 600px) {
+    .accordion:hover, .subsection:hover, arrow:hover {
+        background-color: #a1aa9b;
+        color: #fff;
+    }
+    .accordion:active, .subsection:active, .arrow:active {
+        background-color: #61764b;
+    }
+
+    .arrow {
+        border-color: #000;
+    }
+    .arrow:hover {
+        border-color: #fff;
+    }
+}
+
+
+
+
+/*----Dark color scheme-----*/
+
+@media (prefers-color-scheme: dark) {
+    body{
+        background-color: #111111;
+        color: #dee1dd;
+    }
+    a {
+        color: #dee1dd;
+    }
+    nav ul {
+        background-color: #111111;
+    }
+    footer{
+        background-color: #111111;
+    }
+    nav button {
+        color: #dee1dd;
+        background-color: #003c6c;
+    }
+    nav.open button, nav a:active, nav a.current {
+        color: #dee1dd;
+        background-color: #003c6c;
+    }
+    nav a:hover, nav button:hover {
+        color: #fff;
+        background-color: #334647;
+    }
+    /* CV sections*/
+    body.cv {
+        background-color: #112425;
+    }
+    section.cv {
+        background-color: #111;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+    
+    @media screen and (max-width: 600px) {
+    .accordion:hover, .subsection:hover, arrow:hover {
+        background-color: #334647;
+        color: #fff;
+    }
+    .accordion:active, .subsection:active, .arrow:active {
+        background-color: #003c6c;
+    }
+
+    .arrow {
+        border-color: #000;
+    }
+    .arrow:hover {
+        border-color: #fff;
+    }
+}
+}
+
+
+}

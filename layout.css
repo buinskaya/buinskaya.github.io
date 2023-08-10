@@ -1,0 +1,304 @@
+@media screen {
+    body {
+    margin: 0 0 15vh 0;
+    }
+main {
+    margin: 1%;
+    padding: 1%;
+    text-align: center;
+}
+img {
+  width: 100%;
+  height: auto; 
+}
+section {
+    padding: 5%;
+    margin: 5% auto;
+}
+section.contactWeb {
+    padding: 0;
+    margin: 0 auto;
+}
+i.cv {
+    padding: 0 1% 0 2%;
+}
+
+h3 {
+    margin: 3% auto;
+}
+
+h4 {
+    margin: 2% auto;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion{
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+
+.small h3:after {
+  content: "\002B"; /*unicode for plus sign */
+  float: right;
+  margin-left: 5px;
+}
+
+.smActive h3:after {
+  content: "\2212"; /*unicode for minus sign*/
+}
+
+.big h2 {
+    margin-bottom: 0;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  display: none;
+  overflow: hidden;
+}
+
+.arrow {
+  border: solid;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  margin-top: 5%;
+}
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.subsection {
+    margin: 1% auto;
+    padding: 2%;
+}
+
+
+/* CV */
+img.logo {
+  width: 70px;
+  height: auto; 
+}
+h3.cv {
+    margin: 0 auto;
+}
+
+
+ul.cv{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul.skills {
+    display: inline;
+    padding-left: 1%;
+}
+ul.skills li{
+    display: inline;
+    padding: 0 1% 0 1%;
+    border-left: thin solid;
+}
+ul.skills li.first{
+    border-left: none;
+}
+
+
+section.cv{
+    width:94%;
+    padding: 2%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 3%;
+}
+/*---Navigation bar---*/
+/*closed*/
+header {
+    margin: 2%;
+}
+nav {
+    display: block;
+}
+nav button {
+    display: block;
+    width: 100%;
+    margin: auto;
+    padding: 3%;
+    border: 0;
+}
+nav ul {
+    display: none;
+}
+nav a {
+    display: block;
+    margin: auto;
+    padding: 3%;
+}
+/*open*/
+nav.open ul {
+    display: block;
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+}
+
+
+/*----Footer----*/
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+footer ul {
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+}
+footer ul li {
+    display: inline-block;
+    padding: 3%;
+}
+}
+
+@media screen and (min-width:601px){
+    main{
+        text-align: left;
+    }
+    header {
+        margin: auto;
+    }
+    nav button {
+        display: none;
+    }
+    nav ul {
+        display: block;
+        width: 100%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    nav li {
+        float: left;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav li a {
+        float: left;
+        padding: 1.5vw;
+        margin: auto;
+    }
+    
+    footer div {
+        display: inline-block;
+        float: left;
+        margin-left: 5%;
+    }
+    footer ul {
+    list-style-type: none;
+    display: inline-block;
+    width: 20%;
+    float: right;
+    }     
+    footer ul li {
+        display: inline;
+    }  
+ /*  CV  */
+    .panel{
+    display: block;
+    }
+    
+    img.logo, .school {
+    display: inline-block;
+    }
+    
+    .small h3:after {
+      content: "";
+    }
+
+    .smActive h3:after {
+        content: "";
+    }
+
+    .big h2 {
+        margin-bottom: 3%;
+    }
+    
+    .arrow {
+        display: none;
+    }
+    .headshot {
+        display: block;
+        width: 450px;
+        margin-left: 0;
+    }
+    section.threeCols {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+
+
+@media screen and (min-width:769px){
+    section.leftCol {
+        display: inline-block;
+        padding: 2%;
+        margin: 1%;
+        margin-left: 2%;
+        float: left;
+        width: 30%;
+    }
+    section.rightCol {
+        display: inline-block;
+        float: right;
+        width: 55%;
+        padding: 2%;
+        margin: 1%;
+        margin-right: 2%;
+    }
+}
+
+@media screen and (min-width:993px){
+    .headshot {
+        display: inline-block;
+        float: right;
+        position: relative;
+        top: -125px;
+        width: 429px;
+    }
+    section.threeCols {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        margin: 0 auto;
+        padding: 0;
+        padding-right: 1%;
+    }
+}
+
+
+@media screen and (min-width:1205px){
+    section.threeCols {
+        width: 30%;
+        padding-left: 0;
+    }
+}
+/* For the future
+Screen readers
+@media speech {
+}
+
+*/
