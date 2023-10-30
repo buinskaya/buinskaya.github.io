@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guessing Game</title>
+<link rel="stylesheet" href="guessing_game_styles.css">
+<!-- Render latex -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<h1><strong style="color:#008CBA;">BLUE</strong> or <strong style="color:#f44336;">RED</strong>?</h1>
+    <section id="rulesSection">
+        <h2>Here's how the game works:</h2>
+        <p>Each round, you will be paired with another participant, referred to as <strong>Player 2</strong>. You will flip a coin at the beginning of each round.</p>
+        <ul>
+        <li>If the coin lands on heads, both you and Player 2 will receive a box containing <strong style="color:#008CBA;">55 blue balls</strong> and <strong style="color:#f44336;">45 red balls</strong>.</li>
+        <li>If it lands on tails, your boxes will each have <strong style="color:#f44336;">55 red balls</strong> and <strong style="color:#008CBA;">45 blue balls</strong>.</li>
+        </ul>
+<p>The coin is <button type="button" class="showExplanation" onclick="openIBtn(1)" title="What is a fair coin?">fair</button>, so the outcomes are equally likely.</p>
+        <h3>Sampling from boxes:</h3>
+        <p>After the coin flip, you can draw a sample of <strong>11 balls</strong> from your box and check their colors. Player 2 will sample and check <strong>one ball</strong> from their box.</p>
+        <p>Then you will decide whether to share the results of your sample with Player 2. This choice is entirely yours and can be part of your strategy.</p>
+        <h3>Game's objective:</h3>
+        <p>The goal of the game is to <strong>guess which color is predominant</strong> in your boxes.</p>
+        <ul>
+            <li><strong>Win:</strong> If both you and Player 2 correctly guess the predominant color in your respective boxes, you both win and will receive an award.</li>
+            <li><strong>Lose:</strong> If both guess incorrectly, you both lose and will pay a penalty.</li>
+            <li><strong>Draw:</strong> If one player guesses correctly and the other does not, the game ends in a draw.</li>
+        </ul>
+        <button type="submit" onclick="this.disabled=true; acknowledge('coinFlipSection')">I'm ready</button>
+    </section>
+    <section id="coinFlipSection" class="hidden">
+    <h2>Flip the coin to start the game</h2>        
+    <button type="button" id="flipButton" onclick="flipCoin()" title="Click to flip a coin">Click!</button>
+    <p id="flipMessage"></p>
+    </section>
+
+    <section id="signalSection" class="hidden">
+    <h2>Sample balls</h2>
+    <p>You can check the color of 11 balls of your choice. For your convenience, we <button class="showExplanation" onclick="openIBtn(2)" title="How we calculate">calculated the chance</button> each color is in the majority given your current sample picks.</p>
+        
+    <div class="flex-container">
+      <div id='ball-container' class="balls"></div>
+      <div class="summary" id="ball_count"><h3>Summary:</h3>
+        <div><div class="ball count H" id="countH">0</div> Probability of <strong style="color:#008CBA;">BLUE</strong> majority: <span id="probH">0.5</span></div>
+        <div><div class="ball count T" id="countT">0</div> Probability of <strong style="color:#f44336;">RED</strong> majority: <span id="probT">0.5</span></div>
+        <div>Picks remain: <div id="trialsRemain">11</div></div>
+        </div>
+        </div>
+    </section>
+    
+    <section id="guessSection" class="hidden">
+        <h2>Guess the predominant color</h2>
+        <button class="guessButton H" onclick="guess=recordGuess('H')">BLUE</button>
+        <button class="guessButton T" onclick="guess=recordGuess('T')">RED</button>
+        <p id="recorded" class="hidden">Your guess has been recorded.</p>
+    </section>
+    
+    <section id="choiceSection" class="hidden">
+        <h2>Would you like to share your sample with Player 2?</h2>
+        <p>Player 2 sampled one ball from their box, which has the same color distribution as yours. You can SHOW your sample to Player 2 to help them guess; otherwise, you can PASS and let Player 2 make a guess based on their own pick.</p>
+        <button type="button" class="choiceButton" id="share" onclick="revealResult('share')">SHOW</button>
+        <button type="button" class="choiceButton" id="noShare" onclick="revealResult('noShare')">PASS</button>
+        <p id="P2message"></p>
+    </section>
+
+    <section id="resultSection" class="hidden">
+        <h2>Results </h2>
+        <p>You guessed <span id="choiceMessage" style="font-weight:bold"></span>.</p>
+        <p>Player 2 guessed <span id="P2guessMessage" style="font-weight:bold"></span>.</p>
+        <p>The predominant color in your boxes is <span id="coinFlipMessage" style="font-weight:bold"></span>.</p>
+        <p id="gameMessage"></p>
+        <button type="reset" id="tryAgainButton" onclick="resetGame()"><span>Try Again </span></button>
+        <a href="game.html"><button type="submit"><span>Next </span></button></a>
+    </section>
+    
+    <div id="explanationModal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeIBtn(1)">&times;</span>
+            <p>A <em>fair coin</em> has an equal chance (50%) of it landing on either Heads or Tails.</p>
+        </div>
+    </div>
+    
+<div id="explanationModal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeIBtn(2)">&times;</span>
+            <p>Below is the formula we use to calculate the probabilties given your current picks. Substitute the total number of balls you've picked so far for \(n\), the number of red balls matching the color for \(R\), and the number of blue balls matching the color for \(B\).</p>
+            <div>\(\mathbb{P}(\text{Red is in the majority}|n,R)=\frac{(45-R)!(55-n+R)!}{(45-R)!(55-n+R)! + (55-R)!(45-n+R)!}\)</div>
+            <div>\(\mathbb{P}(\text{Blue is in the majority}|n,B)=\frac{(45-B)!(55-n+B)!}{(45-B)!(55-n+B)! + (55-B)!(45-n+B)!}\)</div>
+        </div>
+    </div>
+
+<script src="game_script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", createBalls());
+    // When the user clicks anywhere outside of the modal, close it
+    window.addEventListener('click', function(event) {
+                        closeByOutClick(event);
+    });
+</script>
+</body>
+</html>
