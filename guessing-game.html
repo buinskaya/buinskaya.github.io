@@ -12,8 +12,8 @@
     onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
-
 <h1><strong style="color:#008CBA;">BLUE</strong> or <strong style="color:#f44336;">RED</strong>?</h1>
+    <button class="accordion hidden" id="rules-accordion" onclick="accordion(this)">Rules of the game</button>
     <section id="rulesSection">
         <h2>Here's how the game works:</h2>
         <p>Each round, you will be paired with another participant, referred to as <strong>Player 2</strong>. You will flip a coin at the beginning of each round.</p>
@@ -63,9 +63,9 @@
     
     <section id="choiceSection" class="hidden">
         <h2>Would you like to share your sample with Player 2?</h2>
-        <p>Player 2 sampled one ball from their box, which has the same color distribution as yours. You can SHOW your sample to Player 2 to help them guess; otherwise, you can PASS and let Player 2 make a guess based on their own pick.</p>
-        <button type="button" class="choiceButton" id="share" onclick="revealResult('share')">SHOW</button>
-        <button type="button" class="choiceButton" id="noShare" onclick="revealResult('noShare')">PASS</button>
+        <p>Player 2 sampled one ball from their box but has not submitted their guess yet. Player 2's box has the same color distribution as yours, so there is a 55% chance they picked a ball that matches the predominant color. You can SHOW your sample of 11 balls to Player 2 to help them guess; otherwise, you can PASS and let Player 2 make a guess based on their own pick.</p>
+        <div><button type="button" class="choiceButton" id="share" onclick="revealResult('share')" title="Player 2 will see one ball from their box and 11 balls from your box before guessing.">SHOW</button>Player 2 will see 11 balls you sampled from your box in addition to one ball from their box.</div>
+        <div><button type="button" class="choiceButton" id="noShare" onclick="revealResult('noShare')" title="Player 2 will see one ball from their box before guessing.">PASS</button>Player 2 will guess based on one ball from their box.</div>
         <p id="P2message"></p>
     </section>
 
@@ -76,7 +76,7 @@
         <p>The predominant color in your boxes is <span id="coinFlipMessage" style="font-weight:bold"></span>.</p>
         <p id="gameMessage"></p>
         <button type="reset" id="tryAgainButton" onclick="resetGame()"><span>Try Again </span></button>
-<!--        <a href="game.html"><button type="submit"><span>Next </span></button></a>-->
+        <a href="game.html"><button type="submit"><span>Next </span></button></a>
     </section>
     
     <div id="explanationModal1" class="modal">
