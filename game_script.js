@@ -252,10 +252,24 @@ function resetGame() {
 
 
 // LAYOUT
-// Press Acknowledge to proceed 
+// Acknowledge rules 
 function acknowledge(id) {
-        document.getElementById(id).classList.remove('hidden');
-    } 
+    document.getElementById(id).classList.remove('hidden');
+    document.getElementById("rulesSection").classList.add("panel");
+    document.getElementById("rules-accordion").classList.remove("hidden");
+}
+
+//Rules accordion
+function accordion(x) {
+    x.classList.toggle("active");
+    var panel = x.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+}
+
 // Information buttons
 function openIBtn(x) {
         const modal = document.getElementById(`explanationModal${x}`);
