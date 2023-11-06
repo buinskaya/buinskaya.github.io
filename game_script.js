@@ -26,7 +26,10 @@ function createBalls() {
 function flipCoin() {
     // Get button and message elements:
     const flipButton = document.getElementById('flipButton');
-    const flipMessage = document.getElementById('flipMessage');   
+    const flipMessage = document.getElementById('flipMessage');
+    const boxMessage = document.getElementById('boxMessage');
+    const boxFill = document.getElementById("boxFill");
+    const filledBar = document.getElementById('filledBar');
     // animate the button
     flipButton.disabled=true;
     flipButton.classList.add("animate");
@@ -43,12 +46,18 @@ function flipCoin() {
     colors.sort(() => Math.random() - 0.5);
     // Simulate delay
     setTimeout(() => {
-        // Disable the button on click
-        flipButton.classList.add("hidden");
     // Indicate the coin has been flipped
         flipMessage.textContent = 'The outcome has been recorded.';
+        boxMessage.textContent = 'Filling up boxes...';
+        boxFill.style.display="flex";
+        move(filledBar);
+    }, 1500); // 1500ms for the flip delay
+    setTimeout(() => {
+        // Disable the button on click
+        flipButton.classList.add("hidden");
         document.getElementById('signalSection').classList.remove('hidden');
-    }, 2000); // 1000ms for the flip delay
+        boxMessage.textContent = 'Boxes are ready.';
+    }, 3000); // 1500ms more for the box delay
 }
 
 
@@ -84,10 +93,10 @@ function sampleBalls() {
         countT++;
         document.getElementById('countT').textContent=`${countT}`;
     };
-    pH = probabilityH(nballs, trialsDone, countH);
-    pT = 1-pH;
-    probH.textContent=pH.toFixed(2);
-    probT.textContent=pT.toFixed(2);
+    pH = 100*probabilityH(nballs, trialsDone, countH);
+    pT = 100-pH;
+    probH.textContent=pH.toFixed(1);
+    probT.textContent=pT.toFixed(1);
     // Update Remaining trials count
     document.getElementById('trialsRemain').textContent=ntrials-trialsDone;
     // End if the trials ran out
@@ -130,15 +139,28 @@ function p2action(action) {
     const choiceButtons = document.querySelectorAll('.choiceButton');
     const P2message = document.getElementById('P2message');
     const P2guessMessage = document.getElementById('P2guessMessage');
+    const P2signalMessage = document.getElementById('P2signalMessage');
+    // Let P2 pick the ball and record the signal
+    const P2signal = Math.random() < nballs/100 ? flipResult : opposite;
+    if (P2signal === 'H') {
+            P2signalMessage.textContent = "BLUE";
+            P2signalMessage.style.color = "#008CBA";
+    } else {
+            P2signalMessage.textContent = "RED";
+            P2signalMessage.style.color = "#f44336";
+    };
+    // Depending on P1's choice, make Bayesian optimal choice.
     choiceButtons.forEach(button => {
         button.disabled = true;
         if (button.id===action) {button.classList.add("selected")};
     });
     P2message.textContent = 'Player 2 is making a choice...';
+    // If "share", follow P1's choice
     if (action === 'share') { 
         P2guess = countH > (ntrials-1)/2 ? 'H' : 'T';
     } else {
-        P2guess = Math.random() < nballs/100 ? flipResult : opposite;
+        // If "pass", guess based on the signal 
+        P2guess = P2signal;
     };
     if (P2guess === 'H') {
             P2guessMessage.textContent = "BLUE";
@@ -198,9 +220,13 @@ function revealResult(action) {
 function resetGame() {
     // Reset the flip button section
     const flipButton=document.getElementById('flipButton');
+    const boxFill=document.getElementById('boxFill');
+    const filledBar = document.getElementById('filledBar');
     flipButton.disabled = false;
     flipButton.classList.remove("animate", "hidden");
     flipButton.textContent = 'Click!';
+    boxFill.style.display='none';
+    filledBar.style.width="0";
     document.getElementById('flipMessage').textContent = '';
     flipResult = null;// Clear the coin flip
     
@@ -211,8 +237,8 @@ function resetGame() {
         ball.className = 'ball'; // Reset the classes
         ball.classList.add('active'); // Make balls appear clickable again
     });
-    document.getElementById('probH').textContent = '0.5';
-    document.getElementById('probT').textContent = '0.5';
+    document.getElementById('probH').textContent = '50.0';
+    document.getElementById('probT').textContent = '50.0';
     document.getElementById('countH').textContent = '0';
     document.getElementById('countT').textContent = '0';
     document.getElementById('trialsRemain').textContent = ntrials;
@@ -247,6 +273,7 @@ function resetGame() {
     document.getElementById('resultSection').classList.add('hidden');
     document.getElementById('gameMessage').textContent = '';
     document.getElementById("P2guessMessage").textContent = '';
+    document.getElementById('P2signalMessage').textContent = '';
     
 }
 
@@ -284,4 +311,19 @@ function closeByOutClick(event) {
     modals.forEach(modal => {
         if (event.target === modal) {modal.style.display = 'none'};
     });
+}
+
+// Box fill progress bar
+function move(x) {
+  var width = 1;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++; 
+      x.style.width = width + '%'; 
+      x.innerHTML = width * 1  + '%';
+    }
+  }
 }
