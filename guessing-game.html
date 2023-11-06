@@ -13,42 +13,55 @@
 </head>
 <body>
 <h1><strong style="color:#008CBA;">BLUE</strong> or <strong style="color:#f44336;">RED</strong>?</h1>
-    <button class="accordion hidden" id="rules-accordion" onclick="accordion(this)">Rules of the game</button>
+    <button class="accordion hidden" id="rules-accordion" onclick="accordion(this)">Game Rules</button>
     <section id="rulesSection">
-        <h2>Here's how the game works:</h2>
-        <p>Each round, you will be paired with another participant, referred to as <strong>Player 2</strong>. You will flip a coin at the beginning of each round.</p>
+        <h2>Game Rules</h2>
+        <h3>TL;DR:</h3>
+        <p>You and Player 2 will receive two identical boxes containing 100 blue and red balls. There are 10 more balls of one color than the other, and there is an equal chance that either color is in the majority. <strong>Your goal is to guess the predominant color.</strong> If both players guess correctly, you win and receive an award; if both guess incorrectly, you lose and pay a penalty. Otherwise, it's a draw.</p>
+        
+        <h3>How the color distribution is determined:</h3>
+        <p>At the beginning of each round, you will flip a <button type="button" class="showExplanation" onclick="openIBtn(1)" title="What is a fair coin?">fair</button> coin.</p>
         <ul>
-        <li>If the coin lands on heads, both you and Player 2 will receive a box containing <strong style="color:#008CBA;">55 blue balls</strong> and <strong style="color:#f44336;">45 red balls</strong>.</li>
+        <li>If the coin lands on heads, you and Player 2 will each receive a box containing <strong style="color:#008CBA;">55 blue balls</strong> and <strong style="color:#f44336;">45 red balls</strong>.</li>
         <li>If it lands on tails, your boxes will each have <strong style="color:#f44336;">55 red balls</strong> and <strong style="color:#008CBA;">45 blue balls</strong>.</li>
         </ul>
-<p>The coin is <button type="button" class="showExplanation" onclick="openIBtn(1)" title="What is a fair coin?">fair</button>, so the outcomes are equally likely.</p>
-        <h3>Sampling from boxes:</h3>
-        <p>After the coin flip, you can draw a sample of <strong>11 balls</strong> from your box and check their colors. Player 2 will sample and check <strong>one ball</strong> from their box.</p>
-        <p>Then you will decide whether to share the results of your sample with Player 2. This choice is entirely yours and can be part of your strategy.</p>
+
+        <h3>Sampling and guessing:</h3>
+        <p>Player 2 will check the color of one ball from their box; there is a 55% chance that it matches the color of their pick matches the majority color.</p>
+        <p>You can check the color of any 11 balls in your box. After that, you will have the option to show your picks to Player 2&mdash;it is completely up to you whether to share this information or pass.</p>
+        <p>After sampling, players may submit their guesses.</p>
+        <p style="font-style: italic">Note: Player 2 is a computer, not a human; however, we programmed it to make the best decision based on all available information.</p>
+        
         <h3>Game's objective:</h3>
-        <p>The goal of the game is to <strong>guess which color is predominant</strong> in your boxes.</p>
+        <p>Both boxes have the same color distribution, as determined by the coin flip. <strong>The goal of the game is to guess which color&mdash;blue or red&mdash;dominates in your boxes</strong>.</p>
         <ul>
             <li><strong>Win:</strong> If both you and Player 2 correctly guess the predominant color in your respective boxes, you both win and will receive an award.</li>
             <li><strong>Lose:</strong> If both guess incorrectly, you both lose and will pay a penalty.</li>
             <li><strong>Draw:</strong> If one player guesses correctly and the other does not, the game ends in a draw.</li>
         </ul>
-        <button type="submit" onclick="this.disabled=true; acknowledge('coinFlipSection')">I'm ready</button>
+        Whenever you are ready to play, press the Start button below. 
+        <button type="submit" onclick="this.disabled=true; acknowledge('coinFlipSection')">Start</button>
     </section>
     <section id="coinFlipSection" class="hidden">
     <h2>Flip the coin to start the game</h2>        
     <button type="button" id="flipButton" onclick="flipCoin()" title="Click to flip a coin">Click!</button>
     <p id="flipMessage"></p>
+    <div id="boxFill" class="hidden">
+    <p id="boxMessage"></p>
+    <div class="emptyBar">
+    <div id="filledBar" class="filledBar" style="width:0;">0%</div></div>
+    </div>
     </section>
 
     <section id="signalSection" class="hidden">
     <h2>Sample balls</h2>
-    <p>You can check the color of 11 balls of your choice. For your convenience, we <button class="showExplanation" onclick="openIBtn(2)" title="How we calculate">calculated the chance</button> each color is in the majority given your current sample picks.</p>
+    <p>Click on a ball to reveal its color. For your convenience, we <button class="showExplanation" onclick="openIBtn(2)" title="How we calculate">calculated the chance</button> that the majority of balls is Blue or Red given your current selection.</p>
         
     <div class="flex-container">
       <div id='ball-container' class="balls"></div>
       <div class="summary" id="ball_count"><h3>Summary:</h3>
-        <div><div class="ball count H" id="countH">0</div> Probability of <strong style="color:#008CBA;">BLUE</strong> majority: <span id="probH">0.5</span></div>
-        <div><div class="ball count T" id="countT">0</div> Probability of <strong style="color:#f44336;">RED</strong> majority: <span id="probT">0.5</span></div>
+        <div><div class="ball count H" id="countH">0</div> Probability of <strong style="color:#008CBA;">BLUE</strong> majority: <span id="probH">50.0</span>%</div>
+        <div><div class="ball count T" id="countT">0</div> Probability of <strong style="color:#f44336;">RED</strong> majority: <span id="probT">50.0</span>%</div>
         <div>Picks remain: <div id="trialsRemain">11</div></div>
         </div>
         </div>
@@ -62,17 +75,17 @@
     </section>
     
     <section id="choiceSection" class="hidden">
-        <h2>Would you like to share your sample with Player 2?</h2>
-        <p>Player 2 sampled one ball from their box but has not submitted their guess yet. Player 2's box has the same color distribution as yours, so there is a 55% chance they picked a ball that matches the predominant color. You can SHOW your sample of 11 balls to Player 2 to help them guess; otherwise, you can PASS and let Player 2 make a guess based on their own pick.</p>
-        <div><button type="button" class="choiceButton" id="share" onclick="revealResult('share')" title="Player 2 will see one ball from their box and 11 balls from your box before guessing.">SHOW</button>Player 2 will see 11 balls you sampled from your box in addition to one ball from their box.</div>
-        <div><button type="button" class="choiceButton" id="noShare" onclick="revealResult('noShare')" title="Player 2 will see one ball from their box before guessing.">PASS</button>Player 2 will guess based on one ball from their box.</div>
+        <h2>Would you like to show your sample to Player 2?</h2>
+        <p>Player 2 picked one ball from their box but has not submitted their guess yet. You can SHOW the 11 balls you picked from your box to Player 2, or you can PASS and let Player 2 make a guess without any additional information.</p>
+        <div><button type="button" class="choiceButton" id="share" onclick="revealResult('share')" title="Player 2 will see one ball from their box and 11 balls from your box before guessing.">SHOW</button>Player 2 will see 11 balls you picked from your box.</div>
+        <div><button type="button" class="choiceButton" id="noShare" onclick="revealResult('noShare')" title="Player 2 will see one ball from their box before guessing.">PASS</button>Player 2 will receive no additional information.</div>
         <p id="P2message"></p>
     </section>
 
     <section id="resultSection" class="hidden">
         <h2>Results </h2>
         <p>You guessed <span id="choiceMessage" style="font-weight:bold"></span>.</p>
-        <p>Player 2 guessed <span id="P2guessMessage" style="font-weight:bold"></span>.</p>
+        <p>Player 2 guessed <span id="P2guessMessage" style="font-weight:bold"></span>. (Their own pick was <span id="P2signalMessage" style="font-weight:bold"></span>.)</p>
         <p>The predominant color in your boxes is <span id="coinFlipMessage" style="font-weight:bold"></span>.</p>
         <p id="gameMessage"></p>
         <button type="reset" id="tryAgainButton" onclick="resetGame()"><span>Try Again </span></button>
