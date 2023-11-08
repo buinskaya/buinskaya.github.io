@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guessing Game&mdash;solution</title>
+<link rel="stylesheet" href="styles.css">
+<!-- Render latex -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+    <h1>Solution</h1>
+    Let \(\alpha\) be the penalty weight, and \(p > q\).
+    <h2>Guessing stage</h2>
+    <h3>Player 1 and Player 2 observe independent signals</h3>
+    <p>When players' information is independent, following one's signal is always optimal.</p>
+    <h3>Player 2 observes Player 1's signal</h3>
+    <p>Assuming that Player 1 follows their signal, Player 2 can either follow Player 1's signal and face the lottery \( (p\cdot 1,(1-p)\cdot (-\alpha)) \), or force a draw by choosing the opposite action.</p>
+    <p>Following P1's signal is optimal for P2 when \( p\ge\frac{\alpha}{1+\alpha} \).</p>
+    <h2>Signalling stage</h2>
+    <p>When \( p\le\frac{\alpha}{1+\alpha} \), Player 1's expected payoff from revealing the signal is 0 because Player 1 will force a draw. Player 1's expected payoff from sending an independent signal to Player 2 is \( pq-\alpha(1-p)(1-q) \). Therefore, it is optimal to send an independent signal if \(p\ge\frac{\alpha(1-q)}{q+\alpha(1-q)}\).</p>
+    <p>When \( p\ge\frac{\alpha}{1+\alpha} \), Player 2 will follow Player 1's signal. Therefore, Player 1's payoff from showing her own signal is \( p-\alpha(1-p) \) and the payoff from sending an independent signal is \( pq-\alpha(1-p)(1-q) \), yielding the threshold \( p\ge\frac{\alpha q}{1-q + \alpha q} \).</p>
+    <h2>Equilibria Summary</h2>
+    <ul>
+        <li>\( q \le p \le \frac{\alpha(1-q)}{q+\alpha(1-q)}\): P1 reveals her signal, P2 forces a draw, payoff 0. (This interval might be null. Another equivalent equilibrium is P1 reveals her signal, P2 follows P1's signal, P1 forces a draw by not following her signal.)</li>
+        <li>\( \frac{\alpha(1-q)}{q+\alpha(1-q)} \le p \le \frac{\alpha q}{1-q + \alpha q} \): P1 sends an independent signal, P2 follows the signal, payoff \(pq-\alpha(1-p)(1-q)\).</li>
+        <li>\( p \ge\frac{\alpha q}{1-q + \alpha q} \): P1 reveals her signal, P2 follows P1's signal, payoff \( p-\alpha(1-p) \).</li>
+    </ul>
+</body>
+</html>
