@@ -1,5 +1,5 @@
 const nballs = 55;
-const ntrials = 11;
+const ntrials = 9;
 let flipResult = null;
 let opposite = null;
 let colors = null;
@@ -135,33 +135,40 @@ function recordGuess(guess) {
 }
 
 // SIMULATE PLAYER 2'S CHOICE
-function p2action(action) {
+function p2action(action, a) {
     const choiceButtons = document.querySelectorAll('.choiceButton');
     const P2message = document.getElementById('P2message');
     const P2guessMessage = document.getElementById('P2guessMessage');
-    const P2signalMessage = document.getElementById('P2signalMessage');
-    // Let P2 pick the ball and record the signal
-    const P2signal = Math.random() < nballs/100 ? flipResult : opposite;
-    if (P2signal === 'H') {
-            P2signalMessage.textContent = "BLUE";
-            P2signalMessage.style.color = "#008CBA";
-    } else {
-            P2signalMessage.textContent = "RED";
-            P2signalMessage.style.color = "#f44336";
-    };
-    // Depending on P1's choice, make Bayesian optimal choice.
+    // Disable buttons
     choiceButtons.forEach(button => {
         button.disabled = true;
         if (button.id===action) {button.classList.add("selected")};
     });
     P2message.textContent = 'Player 2 is making a choice...';
-    // If "share", follow P1's choice
-    if (action === 'share') { 
-        P2guess = countH > (ntrials-1)/2 ? 'H' : 'T';
+    // If P1 shared her signal, follow it whenever p>a/(1+a);
+    // otherwise, choose the opposite to force a draw
+    const threshold = a/(1+a);
+    // P1's signal
+    const maj = countH > (ntrials-1)/2 ? 'H' : 'T';
+    const pH = probabilityH(nballs, ntrials, countH);
+    const pT = 1-pH;
+    // If P1 shared, follow their signal for p>threshold;
+    // Otherwise, choose the opposite action
+    if (action === 'share') {
+        // if pH>threshold, choose H;
+        // otherwise, choose T
+        if (maj=== 'H') {
+            P2guess=pH >= threshold ? 'H' : 'T';
+        } else {
+        // if pT>threshold, choose T;
+        // otherwise, choose H;
+            P2guess=pT >= threshold ? 'T' : 'H';
+        };
     } else {
-        // If "pass", guess based on the signal 
-        P2guess = P2signal;
+    // If P1 did not share, pick one ball from the "informative box" and follow it
+    P2guess=Math.random() < nballs/100 ? flipResult : opposite;
     };
+    // Record P2's choice
     if (P2guess === 'H') {
             P2guessMessage.textContent = "BLUE";
             P2guessMessage.style.color = "#008CBA";
@@ -181,7 +188,7 @@ function revealColors(balls) {
 }
     
 // REVEAL RESULTS
-function revealResult(action) {
+function revealResult(action, a) {
     const coinFlipMessage = document.getElementById('coinFlipMessage');
     const gameMessage = document.getElementById('gameMessage');
     const balls = document.querySelectorAll('.ball:not(.selected)');
@@ -272,9 +279,7 @@ function resetGame() {
     // Reset the result section
     document.getElementById('resultSection').classList.add('hidden');
     document.getElementById('gameMessage').textContent = '';
-    document.getElementById("P2guessMessage").textContent = '';
-    document.getElementById('P2signalMessage').textContent = '';
-    
+    document.getElementById("P2guessMessage").textContent = '';    
 }
 
 
