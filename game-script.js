@@ -56,7 +56,7 @@ function flipCoin() {
         // Disable the button on click
         flipButton.classList.add("hidden");
         document.getElementById('signalSection').classList.remove('hidden');
-        boxMessage.textContent = 'The box are ready.';
+        boxMessage.textContent = 'The box is ready.';
     }, 3000); // 1500ms more for the box delay
 }
 
