@@ -1,0 +1,311 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.balls {
+    display: grid;
+    max-width: 450px;
+    grid-template-columns: repeat(10, 45px);
+    justify-content: left;
+    flex-grow: 1;
+}
+
+.summary {
+    display: inline-block;
+    width: 370px;
+    flex-grow: 1;
+}
+#trialsRemain {
+    display: inline;
+}
+.ball {
+    width: 40px;
+    height: 40px;
+    border: black solid;
+    border-radius: 50%;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    color: white;
+}
+.ball.active:hover {
+    /* your hover styles here, e.g., change of color, background, etc. */
+    cursor: pointer;
+    background-color: #ddd; /* Example style */
+}
+
+/* Adjustments for the outcome display */
+.H {
+    background-color: #008CBA;
+    border-color: #008CBA;
+}
+.T {
+    background-color: #f44336;
+    border-color: #f44336;
+}
+
+/* BUTTONS */
+button {
+    width: 200px;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    color: #000;
+    border: solid;
+    border-radius: 8px;
+}
+
+button:hover, .choiceButton.selected {
+    background-color: #c0c0c0;
+}
+
+
+button:disabled, .choiceButton:disabled {
+    opacity: 0.6;
+    background-color: #e0e0e0;
+    color: #000;
+    cursor: not-allowed;
+}
+
+.choiceButton.selected:disabled {
+    background-color: #c0c0c0;
+    color: #fff;
+}
+
+#flipButton {
+  width: 100px;
+  height: 100px;
+  padding: 3px 10px;
+  border-radius: 50%; /* Makes it circular */
+  text-align: center;
+  line-height: 100px; /* Vertically centers the text in the coin */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+#flipButton.animate {
+  /* Animation */
+  animation: flipCoin 1.8s;
+  perspective: 1000px; /* Gives a 3D effect */
+}
+
+/* Keyframes for the flip animation */
+@keyframes flipCoin {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(180deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+
+.showExplanation {
+    width: auto;
+    padding: 3px 10px;
+    color: magenta;
+    border: dotted magenta 1px;
+    background-color: transparent;
+    padding: none;
+    font-style: italic;
+    font-size: 0.95em;
+}
+.showExplanation:hover {
+    color: #fff;
+    background-color: magenta;
+}
+
+/* Guess buttons */
+.guessButton {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+}
+
+.guessButton.H {
+    background-color: transparent;
+}
+
+.guessButton.T {
+    background-color: transparent;
+}
+
+.guessButton.H:hover,.guessButton.H:disabled {
+  background-color: #008CBA;
+  color: white;
+}
+
+.guessButton.T:hover,.guessButton.T:disabled {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Style for buttons of type 'submit' */
+button[type="submit"], button[type="reset"]  {
+    display: block;
+    width: 220px;
+    border: 1px;
+    margin-top: 10px;
+    padding: 10px;
+    transition: all 0.5s;
+}
+
+/* Style for buttons of type 'reset' */
+
+button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+
+button span:after {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+
+button[type="reset"] span:after {
+    content: '\21bb';
+}
+
+button[type="submit"] span:after {
+  content: '\00bb';
+}
+
+button[type="submit"]:hover span {
+  padding-right: 25px;
+}
+
+button[type="reset"]:hover span {
+  padding-right: 30px;
+}
+
+button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  transition: 0.4s;
+}
+
+.accordion.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.accordion.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+/* progress bar styles */
+.emptyBar{
+    color:#000!important;
+    background-color:#f1f1f1!important;
+    height: 35px;
+    max-width: 400px;
+}
+.filledBar{
+    color:#fff!important;
+    background-color:#a0a0a0!important;
+    height: 25px;
+    padding: 5px 10px;
+    max-width: 380px;
+}
+
+
+#boxFill {
+    display: none;
+    justify-content: left;
+}
+
+.emptyBar, .filledBar {
+    flex-grow: 1;
+    border-radius: 20px;
+}
+
+#boxMessage{
+    display: inline-block;
+    margin: 0;
+    margin-right: 10px;
+}
+
+.survey-question {
+    margin-bottom: 2rem;
+}
+
+@media screen and (min-width:900px){
+    .flex-container {
+        display: flex;
+    }
+    .summary {
+        margin-left: 20px;
+    }
+}
