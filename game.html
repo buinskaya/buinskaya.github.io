@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guessing Game</title>
+<link rel="stylesheet" href="styles.css">
+<!-- Render latex -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<h1><strong style="color:#008CBA;">BLUE</strong> or <strong style="color:#f44336;">RED</strong>?</h1>
+    <button class="accordion hidden" id="rules-accordion" onclick="accordion(this)">Game Rules</button>
+    <section id="rulesSection">
+        <h2>Game Rules</h2>
+        <h3>TL;DR:</h3>
+        <p>You will receive a box containing 100 balls, each either blue or red, and there are more balls of one color than the other; however, the chance that the main color is blue is the same as the chance that the main color is red.<strong> To win a bonus ($1.00) in this game, both you and Player 2 need to guess correctly which color most of the balls in the box are. However, if both you and Player 2 guess the color incorrectly, you will pay a penalty of $4.00</strong>, which will be subtracted from your baseline pay of $8.00 if that round is chosen for payment.</p>
+        <p>Player 2 is a computer, not a human; however, we programmed it to make a decision that is best (expected payoff-maximizing) for you based on all the available information. You will play X rounds of this game, but only one of the rounds will be selected for the final payment. The selection process depends only on chance and not on your performance in the game.</p>
+            
+        <h3>How the color of the balls in the box is determined:</h3>
+        <p>At the beginning of each round, you will flip a <button type="button" class="showExplanation" onclick="openIBtn(1)" title="What is a fair coin?">fair</button> coin.</p>
+        <ul>
+        <li>If the coin lands on heads, you will receive a box containing <strong style="color:#008CBA;">more blue balls</strong> than red balls.</li>
+        <li>If it lands on tails, your box will have <strong style="color:#f44336;">more red balls</strong> than blue balls.</li>
+        </ul>
+        <p>We will tell you how many balls of each color there are, but the outcome of the coin flip (and what the main color is) will remain secret until the end of the round.</p>
+
+        <h3>Sample colors from the box:</h3>
+        <p>You can check the color of any 9 balls from the box you received.</p>
+
+        <h3>Share your information with or hide it from Player 2:</h3>
+        <ul>
+            <li>If you choose to share the information you have with Player 2, they will see both your sample (9 balls you selected) and your guess.</li>
+            <li>If you choose to hide your information, we will put the 9 balls you selected back in the box, after which Player 2 will draw one ball from the box before making a decision. Player 2 will not know your guess, which balls you previously sampled, or which color they were.</li>
+        </ul>
+        
+        <h3>Game's objective:</h3>
+        <p>The goal of the game is to guess which color&mdash;blue or red&mdash;most balls in your box are.</p>
+        <ul>
+            <li><strong>Win a bonus:</strong> If both you and Player 2 correctly guess the main color in your box, you both will receive a potential bonus of $1.00.</li>
+            <li><strong>Pay a penalty:</strong> If both you and Player 2 guess incorrectly, you will both pay a potential penalty of $4.00.</li>
+            <li><strong>Status quo:</strong> If one of you guesses correctly and the other does not, you will neither receive a bonus nor pay a penalty.</li>
+        </ul>
+        <p>Note: <em>Player 2 is a computer, not a human; however, we programmed it to make a decision that maximizes your expected payoff based on all available information.</em></p>
+        <p>You will play X rounds of this game, but only one of the rounds will be selected for final payment. The selection process depends only on chance and not on your performance in the game.</p>
+        <p>Whenever you are ready to play, press the Start button below.</p>
+        
+        <button type="submit" onclick="this.disabled=true; acknowledge('coinFlipSection')">Start</button>
+    </section>
+    <section id="coinFlipSection" class="hidden">
+    <h2>Flip the coin to start the game</h2>        
+    <button type="button" id="flipButton" onclick="flipCoin()" title="Click to flip a coin">Click!</button>
+    <p id="flipMessage"></p>
+    <div id="boxFill" class="hidden">
+    <p id="boxMessage"></p>
+    <div class="emptyBar">
+    <div id="filledBar" class="filledBar" style="width:0;">0%</div></div>
+    </div>
+    </section>
+
+    <section id="signalSection" class="hidden">
+    <h2>Pick any 9 balls</h2>
+    <p>Click on a ball to reveal its color. <strong>There are 55 balls of one color and 45 balls of the other color.</strong> For your convenience, we <button class="showExplanation" onclick="openIBtn(2)" title="How we calculate">calculated the chance</button> that the majority of balls is Blue or Red given your current selection.</p>
+        
+    <div class="flex-container">
+      <div id='ball-container' class="balls"></div>
+      <div class="summary" id="ball_count"><h3>Summary:</h3>
+        <div><div class="ball count H" id="countH">0</div> Probability of <strong style="color:#008CBA;">BLUE</strong> majority: <span id="probH">50.0</span>%</div>
+        <div><div class="ball count T" id="countT">0</div> Probability of <strong style="color:#f44336;">RED</strong> majority: <span id="probT">50.0</span>%</div>
+        <div>Picks remain: <div id="trialsRemain">9</div></div>
+        </div>
+        </div>
+    </section>
+    
+    <section id="guessSection" class="hidden">
+        <h2>Guess the main color</h2>
+        <button class="guessButton H" onclick="guess=recordGuess('H')">BLUE</button>
+        <button class="guessButton T" onclick="guess=recordGuess('T')">RED</button>
+        <p id="recorded" class="hidden">Your guess has been recorded.</p>
+    </section>
+    
+    <section id="choiceSection" class="hidden">
+        <h2>Share with Player 2?</h2>
+        <p>Player 2 has not submitted their guess yet. If you <strong>SHARE</strong> your information with them, Player 2 will see the 9 balls you picked from your box as well as your choice; if you <strong>KEEP</strong> your information from them, we will hide the color of the balls you selected and let Player 2 sample one ball from the box before they make their decision.</p>
+        <div><button type="button" class="choiceButton" id="share" onclick="revealResult('share',2.75)" title="Player 2 will see one ball from their box and 11 balls from your box before guessing.">SHARE</button>Player 2 will see 9 balls you picked from your box and your guess.</div>
+        <div><button type="button" class="choiceButton" id="noShare" onclick="revealResult('noShare',2.75)" title="Player 2 will see one ball from their box before guessing.">KEEP</button>Player 2 will see one ball from your box.</div>
+        <p id="P2message"></p>
+    </section>
+
+    <section id="resultSection" class="hidden">
+        <h2>Results </h2>
+        <p>You guessed <span id="guessMessage" style="font-weight:bold"></span> and chose to <span id="choiceMessage" style="font-weight:bold"></span>.</p>
+        <p>Player 2 saw <span id="P2seenMessage"></span> and guessed <span id="P2guessMessage" style="font-weight:bold"></span>.</p>
+        <p>Most balls in your box are <span id="coinFlipMessage" style="font-weight:bold"></span>.</p>
+        <p id="gameMessage"></p>
+        <button type="reset" id="tryAgainButton" onclick="resetGame()"><span>Next Round</span></button>
+<!--        <a href="math.html"><button type="submit"><span>Math</span></button></a> 
+        -->
+    </section>
+    
+    <div id="explanationModal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeIBtn(1)">&times;</span>
+            <p>A <em>fair coin</em> has an equal chance (50%) of it landing on either Heads or Tails.</p>
+        </div>
+    </div>
+    
+<div id="explanationModal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeIBtn(2)">&times;</span>
+            <p>Below is the formula we use to calculate the probabilties given your current picks. Substitute the total number of balls you've picked so far for \(n\), the number of red balls matching the color for \(R\), and the number of blue balls matching the color for \(B\).</p>
+            <div>\(\mathbb{P}(\text{Red is in the majority}|n,R)=\frac{(45-R)!(55-n+R)!}{(45-R)!(55-n+R)! + (55-R)!(45-n+R)!}\)</div>
+            <div>\(\mathbb{P}(\text{Blue is in the majority}|n,B)=\frac{(45-B)!(55-n+B)!}{(45-B)!(55-n+B)! + (55-B)!(45-n+B)!}\)</div>
+        </div>
+    </div>
+
+<script src="game-script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", createBalls());
+    // When the user clicks anywhere outside of the modal, close it
+    window.addEventListener('click', function(event) {
+                        closeByOutClick(event);
+    });
+</script>
+</body>
+</html>
