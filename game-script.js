@@ -175,14 +175,24 @@ function p2action(action, a) {
     };
     // Record P2's choice
     if (P2guess === 'H') {
-            P2guessMessage.textContent = "BLUE";
-            P2seenMessage.textContent='one BLUE ball';
-            P2guessMessage.style.color = "#008CBA";
+    P2guessMessage.textContent = "BLUE";
+    P2guessMessage.style.color = "#008CBA";
+
+    if (action === 'share') {
+        return;
     } else {
-            P2guessMessage.textContent = "RED";
-            P2guessMessage.style.color = "#f44336";
-            P2seenMessage.textContent='one RED ball';
-    };
+        P2seenMessage.textContent = 'one BLUE ball';
+    }
+} else {
+    P2guessMessage.textContent = "RED";
+    P2guessMessage.style.color = "#f44336";
+
+    if (action === 'share') {
+        return;
+    } else {
+        P2seenMessage.textContent = 'one RED ball';
+    }
+}
 }
 
 // reveal colors
