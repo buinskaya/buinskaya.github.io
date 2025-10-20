@@ -11,24 +11,17 @@
     <h1>Survey</h1>
 </header>
 <main>
-<p>In this part, we will ask you several questions about your experience in the game and your decision-making process. Please answer all questions carefully.</p>
+<p>In this part, we will ask you a few questions about your experience in the game and your decision-making process. Please answer all questions carefully.</p>
 
-<p>Assume that the award for winning the game is $1 and the penalty for losing the game is $4.</p>
+<p>As before, you receive $1 when both players guess the majority color correctly and pay $4 when both players incorrectly is $4. You neither win a bonus nor pay a penalty if players' guesses mismatch.</p>
 
 <form action="/submit-survey" method="post">
-<div class="survey-question">
-  <label for="playPreference">Given a choice, would you prefer to play this game alone or with Player 2?</label><br>
-  <input type="radio" id="alone" name="playPreference" value="Alone">
-  <label for="alone">Alone</label><br>
-  <input type="radio" id="withPlayer2" name="playPreference" value="With Player 2">
-  <label for="withPlayer2">With Player 2</label><br>
-</div>
 
 <div class="survey-question">
-  <label for="player2Preference">If you were Player 2, would you like Player 1 to show you their sample of 9 balls, or would you prefer to guess on your own based on 1 ball you pull from the relevant box?</label><br>
-  <input type="checkbox" id="seeSample" name="player2Preference" value="Prefer to see Player 1’s sample">
+  <label for="player2Preference">If you were Player 2, and you could decide for Player 1 whether they share their information and decision with you or keep them secret, would you like Player 1 to show you their guess and the color of the 9 balls they saw, or would you prefer to guess on your own based on 1 ball you pull from the relevant box?</label><br>
+  <input type="radio" id="seeSample" name="player2Preference" value="Prefer to see Player 1’s sample">
   <label for="seeSample">Prefer to see Player 1’s sample</label><br>
-  <input type="checkbox" id="guessMyself" name="player2Preference" value="Prefer to guess myself">
+  <input type="radio" id="guessMyself" name="player2Preference" value="Prefer to guess myself">
   <label for="guessMyself">Prefer to guess myself</label><br>
 </div>
 
@@ -79,6 +72,14 @@
     <option value="8">8</option>
     <option value="9">9</option>
   </select><br>
+</div>
+
+    <div class="survey-question">
+  <label for="playPreference">Consider a similar game with you as the only player: as before, you check the color of 9 balls and guess the majority color; you receive the bonus if you guess the majority color correctly and pay the penalty otherwise (there is no way to maintain the status quo). Given a choice, would you prefer to play the game you just played (with Player 2) or the game just described above with you as the only player?</label><br>
+  <input type="radio" id="alone" name="playPreference" value="Alone">
+  <label for="alone">With me as the only player</label><br>
+  <input type="radio" id="withPlayer2" name="playPreference" value="With Player 2">
+  <label for="withPlayer2">With Player 2</label><br>
 </div>
 
 <div class="survey-question">
