@@ -47,6 +47,27 @@
         </ul>
         <p>Note: <em>Player 2 is a computer, not a human; however, we programmed it to make a decision that maximizes your expected payoff based on all available information.</em></p>
         <p>You will play X rounds of this game, but only one of the rounds will be selected for final payment. The selection process depends only on chance and not on your performance in the game.</p>
+<p>To make sure you understood the rules, please answer the following question.</p>
+        <form>
+  <p>
+    Ann played several rounds of this game before you. In the last round, she was presented with a box containing 
+    60 blue balls and 40 red balls. She picked 9 balls out of the box, and 8 of them were blue. She guessed blue and 
+    chose to keep her information to herself. Player 2 guessed blue. The majority color was revealed to be blue.
+  </p>
+  <p><strong>Select all true statements:</strong></p>
+
+  <label><input type="checkbox" name="q1" value="bonus1"> Ann will receive a $1 bonus.</label><br>
+  <label><input type="checkbox" name="q1" value="p2_saw_selection"> Player 2 saw Ann's ball selection before guessing the majority color.</label><br>
+  <label><input type="checkbox" name="q1" value="bonus_if_selected"> Ann will receive a $1 bonus if the last round is selected for final payment.</label><br>
+  <label><input type="checkbox" name="q1" value="p2_saw_guess"> Player 2 saw Ann's guess before guessing the majority color.</label><br>
+  <label><input type="checkbox" name="q1" value="p2_picked_one_blue"> Player 2 picked one blue ball from the box.</label><br>
+  <label><input type="checkbox" name="q1" value="p2_more_than_half_blue"> Player 2 picked 9 balls, and more than half of them were blue.</label><br>
+  <label><input type="checkbox" name="q1" value="penalty"> Ann will pay a $4 penalty if the last round is selected for final payment.</label><br>
+  <label><input type="checkbox" name="q1" value="best_choice"> Player 2 made the best choice (in terms of Ann's expected payoff) given all information available to Player 2.</label><br><br>
+
+  <button type="submit">Submit</button>
+</form>
+
         <p>Whenever you are ready to play, press the Start button below.</p>
         
         <button type="submit" onclick="this.disabled=true; acknowledge('coinFlipSection')">Start</button>
